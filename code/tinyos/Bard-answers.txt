@@ -1,0 +1,13 @@
+- Wireless application with about 20 nodes
+- One node is a transmitter (hooked up to PC)
+- Rest are receivers (hooked up to PC if too weak)
+- Transmitter sends packets to receivers and receivers decode a message
+- Receiver:
+	- compute a 20x20 (# nodes) SVD
+	- floating point
+- Transmitter:
+	- must be able to connect to PC (computation is too much)
+- range is size of an office to an entire floor
+- memory:
+	- ideally external memory (e.g. flash/sd)
+	- Tens of KBs min, MBs range preferable

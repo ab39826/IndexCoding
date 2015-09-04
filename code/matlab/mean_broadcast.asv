@@ -1,0 +1,37 @@
+sum = 0;
+eps = .4;
+K = 6;
+inds = zeros(1,K);
+
+for i = 1:2^K-1
+    for j = 1:K
+        inds(j) = bitsra(bitand(i,j),j-1);
+    end
+    isum = 
+    sum = sum + 
+end
+
+
+for i1 = 0:1:1
+    for i2 = 1:K
+        
+
+for i1=0:1:1
+    for i2 = 0:1:1
+        for i3 = 0:1:1
+            for i4 = 0:1:1
+                for i5 = 0:1:1
+                    for i6=0:1:1
+                        isum = i1+i2+i3+i4+i5+i6;
+                        if isum == 0
+                            %do nothing
+                        else
+                            sum = sum + (-1)^(isum-1)/(1 - .4^isum);
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+sum

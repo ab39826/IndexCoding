@@ -1,0 +1,13 @@
+June 18
+	- Explore micaz memory/packet size limitations
+	- Explore micaz processing power limitations
+June 25
+	- Receiver code (must be in C)
+	- Purchase new hardware if necessary
+July 2
+	- Receiver code (must be in C)
+July 9
+	- Transmitter code (in Python)
+July 16
+	- Experiment
+

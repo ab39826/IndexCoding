@@ -1,0 +1,73 @@
+# nuclear_alignment.py
+
+import numpy as np
+import cvxpy as cp
+
+
+# nuclear_alignment(I, m, epsilon, iter) runs the nuclear norm minimization
+# and returns the precoding and decoding coefficient matrices V and U
+# The inputs are
+#	I: [K,K] matrix of interference indicators
+#	m: number of transmissions (rows in V,U)
+#	epsilon:	threshold for min. eigenvalue
+#	iter:		number of iterations
+# The outputs are
+#	V: [m,K] final encoding matrix
+#	U: [m,K] final decoding matrix
+
+def nuclear_alignment(I, m, epsilon=.1, iter=5):
+	# initialize U
+	K = np.size(I,1)
+	U = cp.randn(m,K)
+
+	# nuclear norm optimization
+	for i in range(2*iter):	# two stages per iteration
+
+		if not i % 2: # optimize over V on even iters
+			V = cp.variable(m,K)
+			f_cost = cp.parameter()
+			f_cost.value = 0
+			J = cp.parameter(K,K)
+			J.value = cp.zeros((K,K))
+
+		else:	# optimize over U on odd iters
+			U = cp.variable(m,K)
+			f_cost = cp.parameter()
+			f_cost.value = 0
+			J = cp.parameter(K,K)
+			J.value = cp.zeros((K,K))
+
+		# define the cost parameter
+		for k in range(K):
+			# create a list of interferer indeces Ik
+			# from the interference set I
+			Ik = np.arange(1,K+1)*I[k,:]	# careful about zero indexing...
+			Ik = Ik[Ik>0] - 1
+			print 'I_%d = ' % k, Ik
+			if len(Ik) > 0:
+				for l in Ik:
+					l = int(l)
+					J[k,l] = U[:,k].T*V[:,l]	# interference terms
+				f_cost = f_cost + cp.nuclear_norm(J[k,:])
+
+		constraints = []
+		for k in range(K):
+			#c = cp.geq(U[:,k].T*V[:,k], epsilon)
+			c = cp.geq(cp.lambda_min(U[:,k].T*V[:,k]), epsilon)
+			constraints.append(c)
+
+		p = cp.program(cp.minimize(f_cost), constraints)
+		p.solve(quiet=False)
+
+		if not i % 2:
+			V = V.value
+		else:
+			U = U.value
+
+	return normalize(V), normalize(U)
+
+# normalize column vectors of X
+def normalize(X):
+	norms = np.apply_along_axis(np.linalg.norm, 0, X)
+	return X / norms.reshape(1,-1)
+

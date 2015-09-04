@@ -1,0 +1,206 @@
+<?xml version="1.0" ?><component loc="37:/opt/tinyos-2.1.1/tos/system/TimerMilliP.nc" nicename="tos.system.TimerMilliP" qname="TimerMilliP">
+      <documentation loc="23:/opt/tinyos-2.1.1/tos/system/TimerMilliP.nc">
+        <short>
+ Components should never wire to this component.</short>
+        <long>
+ Components should never wire to this component. This is the
+ underlying configuration of virtualized millisecond timers. 
+ It auto-wires wires the timer
+ implementation (TimerC) to the boot sequence and exports the
+ various Timer interfaces.
+
+ @author Philip Levis
+ @author Cory Sharp
+ @date   May 16 2005
+</long>
+      </documentation>
+      <configuration/>
+      <wiring>
+        <wire loc="43:/opt/tinyos-2.1.1/tos/system/TimerMilliP.nc">
+          <from><interface-ref name="TimerMilli" ref="0x2b97e7ad66a0" scoped=""/></from>
+          <to><interface-ref name="TimerMilli" ref="0x2b97e7acedb8" scoped=""/></to>
+        </wire>
+        <wire loc="42:/opt/tinyos-2.1.1/tos/system/TimerMilliP.nc">
+          <from><interface-ref name="SoftwareInit" ref="0x2b97e78b9a30" scoped=""/></from>
+          <to><interface-ref name="Init" ref="0x2b97e7ace0c0" scoped=""/></to>
+        </wire>
+      </wiring>
+    <specification><interface loc="38:/opt/tinyos-2.1.1/tos/system/TimerMilliP.nc" name="TimerMilli" provided="1" ref="0x2b97e7ad66a0">
+      <component-ref nicename="tos.system.TimerMilliP" qname="TimerMilliP"/>
+      <type-interface alignment="I:1" size="I:2"><interface-ref name="TimerMilli" ref="0x2b97e7ad66a0" scoped=""/></type-interface>
+      <instance>
+        <interfacedef-ref nicename="tos.lib.timer.Timer" qname="Timer"/>
+        <arguments>
+          <type-tag alignment="I:1" size="I:2"><struct-ref ref="0x2b97e7834530"/>
+            <typename><typedef-ref name="TMilli" ref="0x2b97e7834888"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-parameters>
+        <type-int alignment="I:1" cname="unsigned char" size="I:1" unsigned="">
+          <typename><typedef-ref name="uint8_t" ref="0x2b97e6f70910"/></typename>
+        </type-int>
+      </interface-parameters>
+      <interface-functions>
+        <function-ref name="getNow" ref="0x2b97e7ad3a18" scoped=""/>
+        <function-ref name="fired" ref="0x2b97e7ad4158" scoped=""/>
+        <function-ref name="startPeriodicAt" ref="0x2b97e7ad4e48" scoped=""/>
+        <function-ref name="isOneShot" ref="0x2b97e7ad49f8" scoped=""/>
+        <function-ref name="getdt" ref="0x2b97e7ad12e8" scoped=""/>
+        <function-ref name="gett0" ref="0x2b97e7ad3e68" scoped=""/>
+        <function-ref name="isRunning" ref="0x2b97e7ad45a8" scoped=""/>
+        <function-ref name="startPeriodic" ref="0x2b97e7ad5370" scoped=""/>
+        <function-ref name="startOneShotAt" ref="0x2b97e7ad3448" scoped=""/>
+        <function-ref name="startOneShot" ref="0x2b97e7ad5810" scoped=""/>
+        <function-ref name="stop" ref="0x2b97e7ad5cb0" scoped=""/>
+      </interface-functions>
+    </interface></specification><referenced><interface loc="47:/opt/tinyos-2.1.1/tos/system/MainC.nc" name="SoftwareInit" provided="0" ref="0x2b97e78b9a30">
+      <component-ref nicename="tos.system.MainC" qname="MainC"/>
+      <type-interface alignment="I:1" size="I:2"><interface-ref name="SoftwareInit" ref="0x2b97e78b9a30" scoped=""/></type-interface>
+      <instance>
+        <interfacedef-ref nicename="tos.interfaces.Init" qname="Init"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="init" ref="0x2b97e78b9d80" scoped=""/>
+      </interface-functions>
+    </interface><interface loc="34:/opt/tinyos-2.1.1/tos/platforms/mica/HilTimerMilliC.nc" name="Init" provided="1" ref="0x2b97e7ace0c0">
+      <component-ref nicename="tos.platforms.mica.HilTimerMilliC" qname="HilTimerMilliC"/>
+      <type-interface alignment="I:1" size="I:2"><interface-ref name="Init" ref="0x2b97e7ace0c0" scoped=""/></type-interface>
+      <instance>
+        <interfacedef-ref nicename="tos.interfaces.Init" qname="Init"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="init" ref="0x2b97e7ace410" scoped=""/>
+      </interface-functions>
+    </interface><interface loc="35:/opt/tinyos-2.1.1/tos/platforms/mica/HilTimerMilliC.nc" name="TimerMilli" provided="1" ref="0x2b97e7acedb8">
+      <component-ref nicename="tos.platforms.mica.HilTimerMilliC" qname="HilTimerMilliC"/>
+      <type-interface alignment="I:1" size="I:2"><interface-ref name="TimerMilli" ref="0x2b97e7acedb8" scoped=""/></type-interface>
+      <instance>
+        <interfacedef-ref nicename="tos.lib.timer.Timer" qname="Timer"/>
+        <arguments>
+          <type-tag alignment="I:1" size="I:2"><struct-ref ref="0x2b97e7834530"/>
+            <typename><typedef-ref name="TMilli" ref="0x2b97e7834888"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-parameters>
+        <type-int alignment="I:1" cname="unsigned char" size="I:1" unsigned="">
+          <typename><typedef-ref name="uint8_t" ref="0x2b97e6f70910"/></typename>
+        </type-int>
+      </interface-parameters>
+      <interface-functions>
+        <function-ref name="getNow" ref="0x2b97e7adf088" scoped=""/>
+        <function-ref name="fired" ref="0x2b97e7ae1708" scoped=""/>
+        <function-ref name="startPeriodicAt" ref="0x2b97e7ae0470" scoped=""/>
+        <function-ref name="isOneShot" ref="0x2b97e7ae0020" scoped=""/>
+        <function-ref name="getdt" ref="0x2b97e7adf928" scoped=""/>
+        <function-ref name="gett0" ref="0x2b97e7adf4d8" scoped=""/>
+        <function-ref name="isRunning" ref="0x2b97e7ae1b58" scoped=""/>
+        <function-ref name="startPeriodic" ref="0x2b97e7acd930" scoped=""/>
+        <function-ref name="startOneShotAt" ref="0x2b97e7ae0a40" scoped=""/>
+        <function-ref name="startOneShot" ref="0x2b97e7acddd0" scoped=""/>
+        <function-ref name="stop" ref="0x2b97e7ae12b8" scoped=""/>
+      </interface-functions>
+    </interface><component loc="33:/opt/tinyos-2.1.1/tos/platforms/mica/HilTimerMilliC.nc" nicename="tos.platforms.mica.HilTimerMilliC" qname="HilTimerMilliC">
+      <documentation loc="23:/opt/tinyos-2.1.1/tos/platforms/mica/HilTimerMilliC.nc">
+        <short>
+ Millisecond timer for the mica family (see TEP102).</short>
+        <long>
+ Millisecond timer for the mica family (see TEP102). The &quot;millisecond&quot;
+ timer system is built on hardware timer 0, running at 1024Hz.
+
+ @author Cory Sharp &lt;cssharp@eecs.berkeley.edu&gt;
+ @author Martin Turon &lt;mturon@xbow.com&gt;
+</long>
+      </documentation>
+      <configuration/>
+      <wiring>
+        <wire loc="50:/opt/tinyos-2.1.1/tos/platforms/mica/HilTimerMilliC.nc">
+          <from><interface-ref name="TimerMilli" ref="0x2b97e7acedb8" scoped=""/></from>
+          <to><interface-ref name="Timer" ref="0x2b97e7c4f5e0" scoped=""/></to>
+        </wire>
+        <wire loc="54:/opt/tinyos-2.1.1/tos/platforms/mica/HilTimerMilliC.nc">
+          <from><interface-ref name="LocalTime" ref="0x2b97e7ada298" scoped=""/></from>
+          <to><interface-ref name="LocalTime" ref="0x2b97e7c78128" scoped=""/></to>
+        </wire>
+        <wire loc="48:/opt/tinyos-2.1.1/tos/platforms/mica/HilTimerMilliC.nc">
+          <from><interface-ref name="Init" ref="0x2b97e7ace0c0" scoped=""/></from>
+          <to><interface-ref name="Init" ref="0x2b97e7adc8a8" scoped=""/></to>
+        </wire>
+        <wire loc="51:/opt/tinyos-2.1.1/tos/platforms/mica/HilTimerMilliC.nc">
+          <from><interface-ref name="TimerFrom" ref="0x2b97e7c65858" scoped=""/></from>
+          <to><interface-ref name="Timer" ref="0x2b97e7c0fab0" scoped=""/></to>
+        </wire>
+        <wire loc="52:/opt/tinyos-2.1.1/tos/platforms/mica/HilTimerMilliC.nc">
+          <from><interface-ref name="Alarm" ref="0x2b97e7c0ac70" scoped=""/></from>
+          <to><interface-ref name="AlarmMilli32" ref="0x2b97e7aec1c8" scoped=""/></to>
+        </wire>
+        <wire loc="55:/opt/tinyos-2.1.1/tos/platforms/mica/HilTimerMilliC.nc">
+          <from><interface-ref name="Counter" ref="0x2b97e7c6f330" scoped=""/></from>
+          <to><interface-ref name="CounterMilli32" ref="0x2b97e7af73b8" scoped=""/></to>
+        </wire>
+      </wiring>
+    </component><component loc="45:/opt/tinyos-2.1.1/tos/system/MainC.nc" nicename="tos.system.MainC" qname="MainC">
+      <documentation loc="1:/opt/tinyos-2.1.1/tos/platforms/micaz/hardware.h">
+        <short>                                                                     
+  IMPORTANT: READ BEFORE DOWNLOADING, COPYING, INSTALLING OR USING.</short>
+        <long>                                                                     
+  IMPORTANT: READ BEFORE DOWNLOADING, COPYING, INSTALLING OR USING.  By
+  downloading, copying, installing or using the software you agree to
+  this license.  If you do not agree to this license, do not download,
+  install, copy or use the software.
+
+  Copyright (c) 2004-2005 Crossbow Technology, Inc.
+  Copyright (c) 2002-2003 Intel Corporation.
+  Copyright (c) 2000-2003 The Regents of the University  of California.    
+  All rights reserved.
+
+  Permission to use, copy, modify, and distribute this software and its
+  documentation for any purpose, without fee, and without written
+  agreement is hereby granted, provided that the above copyright
+  notice, the (updated) modification history and the author appear in
+  all copies of this source code.
+
+  Permission is also granted to distribute this software under the
+  standard BSD license as contained in the TinyOS distribution.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+  PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE INTEL OR ITS
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+  @author Jason Hill, Philip Levis, Nelson Lee, David Gay
+  @author Alan Broad &lt;abroad@xbow.com&gt;
+  @author Matt Miller &lt;mmiller@xbow.com&gt;
+  @author Martin Turon &lt;mturon@xbow.com&gt;
+
+  $Id: hardware.h,v 1.7 2009/07/01 19:27:00 scipio Exp $
+</long>
+      </documentation>
+      <configuration/>
+      <wiring>
+        <wire loc="61:/opt/tinyos-2.1.1/tos/system/MainC.nc">
+          <from><interface-ref name="Boot" ref="0x2b97e78ac618" scoped=""/></from>
+          <to><interface-ref name="Boot" ref="0x2b97e7a5b278" scoped=""/></to>
+        </wire>
+        <wire loc="56:/opt/tinyos-2.1.1/tos/system/MainC.nc">
+          <from><interface-ref name="Scheduler" ref="0x2b97e7a5b8b0" scoped=""/></from>
+          <to><interface-ref name="Scheduler" ref="0x2b97e77b6390" scoped=""/></to>
+        </wire>
+        <wire loc="57:/opt/tinyos-2.1.1/tos/system/MainC.nc">
+          <from><interface-ref name="PlatformInit" ref="0x2b97e7a5a398" scoped=""/></from>
+          <to><interface-ref name="Init" ref="0x2b97e78b78e8" scoped=""/></to>
+        </wire>
+        <wire loc="60:/opt/tinyos-2.1.1/tos/system/MainC.nc">
+          <from><interface-ref name="SoftwareInit" ref="0x2b97e7a5aa60" scoped=""/></from>
+          <to><interface-ref name="SoftwareInit" ref="0x2b97e78b9a30" scoped=""/></to>
+        </wire>
+      </wiring>
+    </component></referenced></component>

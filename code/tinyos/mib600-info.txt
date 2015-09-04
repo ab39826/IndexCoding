@@ -1,0 +1,12 @@
+To build to a micaz mote, use the following command:
+make micaz install eprb,128.83.xxx.xxx
+
+Currently used MIB600s:
+MAC 00-20-4A-32-EF-29
+IP 128.83.196.181
+
+MAC 00-20-4A-32-F2-19
+IP 128.83.196.249
+
+Mote-PC communications:
+network@128.83.xxx.xxx:10002
